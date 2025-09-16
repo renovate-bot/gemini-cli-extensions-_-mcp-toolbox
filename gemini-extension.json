@@ -1,0 +1,14 @@
+{
+  "name": "mcp-toolbox",
+  "version": "0.1.0",
+  "description": "Connect to mcp-toolbox",
+  "mcpServers": {
+    "MCP Toolbox": {
+      "command": "${extensionPath}${/}toolbox",
+      "args": [
+        "--stdio"
+      ]
+    }
+  },
+  "contextFileName": "MCP-TOOLBOX.md"
+}
