@@ -24,10 +24,15 @@ on:
   release:
     types: [created]
 
+permissions:
+  contents: read
+
 jobs:
   package:
     name: Package for ${{ matrix.platform.os }}-${{ matrix.platform.arch }}
     runs-on: ubuntu-latest
+    permissions:
+      contents: read
 
     strategy:
       matrix:
@@ -39,9 +44,10 @@ jobs:
     
     steps:
       - name: Checkout code at the new tag
-        uses: actions/checkout@9c091bb21b7c1c1d1991bb908d89e4e9dddfe3e0 # v7
+        uuses: actions/checkout@9c091bb21b7c1c1d1991bb908d89e4e9dddfe3e0 # v7
         with:
           ref: ${{ github.event.release.tag_name }}
+          persist-credentials: false
 
       - name: Set Dynamic Environment Variables
         id: vars
@@ -118,6 +124,8 @@ jobs:
     steps:
       - name: Checkout code
         uses: actions/checkout@9c091bb21b7c1c1d1991bb908d89e4e9dddfe3e0 # v7
+        with:
+          persist-credentials: false
 
       - name: Download all archives from workflow artifacts
         uses: actions/download-artifact@3e5f45b2cfb9172054b4087a40e8e0b5a5461e7c # v8
